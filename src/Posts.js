@@ -1,5 +1,5 @@
 import React from "react";
 
 export default props => {
-  return <h1>Helloeee {props.name}!</h1>;
+  return <h1>Posts</h1>;
 };
