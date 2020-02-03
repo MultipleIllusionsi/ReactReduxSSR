@@ -1,3 +1,22 @@
 {
-  "presets": ["@babel/preset-env", "react-app"]
+  "presets": [
+    ["env", {
+      "modules": false,
+      "development": {
+        "presets": ["react-hmre"],
+        "plugins": [
+          ["react-transform", {
+            "transforms": [{
+              "transform": "react-transform-hmr",
+              "imports": ["react"],
+              "locals": ["module"]
+            }]
+          }]
+        ]
+      }
+    }],
+    "env",
+    "react",
+    "stage-0"
+  ]
 }
