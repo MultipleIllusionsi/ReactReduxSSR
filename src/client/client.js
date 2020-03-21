@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Home from "./components/Home";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./Routes";
 
 // make option for only CSR
-ReactDOM.hydrate(<Home />, document.getElementById("root"));
+ReactDOM.hydrate(
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
