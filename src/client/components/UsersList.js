@@ -21,4 +21,9 @@ const mapStateToProps = state => {
   return { users: state.users };
 };
 
+const loadData = () => {
+  console.log("load user data");
+};
+
+export { loadData };
 export default connect(mapStateToProps, { fetchUsers })(UsersList);
