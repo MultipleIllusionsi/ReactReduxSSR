@@ -2,9 +2,13 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchUsers } from "../actions";
 
-const UsersList = ({ users, fetchUsers }) => {
+import { Link } from "react-router-dom";
+
+const UsersListPage = ({ users, fetchUsers }) => {
   useEffect(() => {
-    fetchUsers();
+    if (!users.length) {
+      fetchUsers();
+    }
   }, []);
 
   const renderUsers = () =>
@@ -12,6 +16,8 @@ const UsersList = ({ users, fetchUsers }) => {
 
   return (
     <div>
+      <Link to="/">To Home</Link>
+      <br />
       List of users <ul>{renderUsers()}</ul>
     </div>
   );
@@ -25,5 +31,7 @@ const loadData = store => {
   return store.dispatch(fetchUsers());
 };
 
-export { loadData };
-export default connect(mapStateToProps, { fetchUsers })(UsersList);
+export default {
+  loadData,
+  component: connect(mapStateToProps, { fetchUsers })(UsersListPage)
+};

@@ -6,12 +6,18 @@ import { renderRoutes } from "react-router-config";
 
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import logger from "redux-logger";
 import { Provider } from "react-redux";
 
 import Routes from "./Routes";
 import reducers from "./reducers";
 
-const store = createStore(reducers, {}, applyMiddleware(thunk));
+// CSR REDUX
+const store = createStore(
+  reducers,
+  window.INITIAL_STATE,
+  applyMiddleware(thunk, logger)
+);
 
 // make option for only CSR
 ReactDOM.hydrate(

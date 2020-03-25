@@ -1,9 +1,17 @@
+// SSR REDUX
 import { createStore, applyMiddleware } from "redux";
+// import logger from "redux-logger";
 import thunk from "redux-thunk";
 import reducers from "../client/reducers";
 
+const middlewares = [thunk];
+
+// if (process.env.NODE_ENV === "development") {
+//   middlewares.push(logger);
+// }
+
 export default () => {
-  const store = createStore(reducers, {}, applyMiddleware(thunk));
+  const store = createStore(reducers, {}, applyMiddleware(...middlewares));
 
   return store;
 };
