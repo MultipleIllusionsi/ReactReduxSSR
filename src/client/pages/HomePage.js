@@ -3,8 +3,13 @@ import React from "react";
 const HomePage = () => {
   return (
     <>
-      <h1>HomePage</h1>
-      <button onClick={() => console.log("hi there")}>Press me!</button>
+      <div
+        className="center-align"
+        style={{ marginTop: "10vh" }}
+      >
+        <h3>Welcome</h3>
+        <p>SSR HomePage</p>
+      </div>
     </>
   );
 };
