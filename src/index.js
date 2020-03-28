@@ -24,17 +24,30 @@ app.use(express.static("public"));
 app.get("*", (req, res) => {
   const store = createStore(req);
 
-  const promises = matchRoutes(Routes, req.path).map(
-    ({ route, match }) => {
-      return route.loadData
+  const promises = matchRoutes(Routes, req.path)
+    .map(({ route, match }) =>
+      route.loadData
         ? route.loadData(store, match.params)
-        : null;
-    }
-  );
+        : null
+    )
+    .map(promise => {
+      if (promise) {
+        return new Promise((resolve, reject) => {
+          promise.then(resolve).catch(resolve);
+        });
+      }
+    });
 
   Promise.all(promises).then(() => {
     const context = {};
     const content = renderer(req, store, context);
+
+    // 301 - moved permanently
+    // 303 - moved temporarily
+    // we use 303 not to clear cache every time
+    if (context.url) {
+      return res.redirect(303, context.url);
+    }
 
     if (context.notFound) {
       res.status(404);
