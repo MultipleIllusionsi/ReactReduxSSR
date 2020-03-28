@@ -19,15 +19,15 @@ const UsersListPage = ({ users, fetchUsers }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return { users: state.users };
+const mapStateToProps = ({ users }) => {
+  return { users };
 };
 
-const loadData = store => {
-  return store.dispatch(fetchUsers());
-};
+const loadData = store => store.dispatch(fetchUsers());
 
 export default {
   loadData,
-  component: connect(mapStateToProps, { fetchUsers })(UsersListPage)
+  component: connect(mapStateToProps, { fetchUsers })(
+    UsersListPage
+  ),
 };

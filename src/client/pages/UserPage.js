@@ -18,13 +18,12 @@ const UserPage = ({ user, fetchUser, match }) => {
   );
 };
 
-// const mapStateToProps = state => {
-//   return { user: state.user };
+// const mapStateToProps = ({ user }) => {
+//   return { user };
 // };
 
-// const loadData = (store, params) => {
-//   return store.dispatch(fetchUser(params.id));
-// };
+// const loadData = (store, params) =>
+//   store.dispatch(fetchUser(params.id));
 
 // export default {
 //   loadData,
